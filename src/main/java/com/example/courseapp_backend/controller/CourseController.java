@@ -3,10 +3,9 @@ package com.example.courseapp_backend.controller;
 import com.example.courseapp_backend.dao.CourseDao;
 import com.example.courseapp_backend.model.Courses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -14,6 +13,7 @@ public class CourseController {
 
     @Autowired
     private CourseDao dao;
+    @CrossOrigin(origins="*")
 
     @PostMapping(path = "/add",consumes = "application/json",produces = "application/json")
     public String Addcourse(@RequestBody Courses c)
@@ -28,9 +28,10 @@ public class CourseController {
         return "course added successfully";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
-    public String viewcourse()
+    public List<Courses> view()
     {
-        return "course viewed";
+        return (List<Courses>) dao.findAll();
     }
 }
