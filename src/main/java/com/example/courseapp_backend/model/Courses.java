@@ -1,9 +1,6 @@
 package com.example.courseapp_backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="Courses")
@@ -11,7 +8,7 @@ import jakarta.persistence.Table;
 public class Courses {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
     private String courseTitle;
